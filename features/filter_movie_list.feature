@@ -36,4 +36,7 @@ Scenario: no ratings selected
 
 
 Scenario: all ratings selected
-
+  When I check the following ratings: PG, R, PG-13, G, NC-17
+  And I press "Refresh"
+  Then I should be on the RottenPotatoes home page 
+  And I should see all of the movies
