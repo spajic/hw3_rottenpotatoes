@@ -3,9 +3,11 @@
 Given /the following movies exist/ do |movies_table|
   movies_table.hashes.each do |movie|
     # each returned element will be a hash whose key is the table header.
-    # you should arrange to add that movie to the database here.
-    title, rating, release_date = movie
-    Movie.find_or_create_by_title_and_rating_and_release_date(title, rating, release_date)
+    # you should arrange to add that movie to the database here.    
+
+    if !Movie.exists?(:title => movie['title'])
+      Movie.new(movie).save
+    end
   end
   # flunk "Unimplemented"
 end
@@ -27,4 +29,13 @@ When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
   # HINT: use String#split to split up the rating_list, then
   #   iterate over the ratings and reuse the "When I check..." or
   #   "When I uncheck..." steps in lines 89-95 of web_steps.rb
+  ratings = rating_list.split(",")
+  ratings.each {|r|
+    rating_element_id = "ratings_" + r.gsub(" ", "")
+    if uncheck != nil
+      uncheck(rating_element_id)
+    else
+      check(rating_element_id)
+    end
+  }
 end
