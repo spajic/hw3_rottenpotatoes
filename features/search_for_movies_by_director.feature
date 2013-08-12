@@ -19,6 +19,11 @@
       Given I am on the RottenPotatoes home page
       Then I should see "Ridley Scott"
 
+    Scenario: see Director input field on edit page
+      When I go to the edit page for "Alien"
+      Then I should see "Director"
+      And I should see "Edit Existing Movie"
+
     Scenario: add director to existing movie
       When I go to the edit page for "Alien"
       And  I fill in "Director" with "Ridley Scott"
