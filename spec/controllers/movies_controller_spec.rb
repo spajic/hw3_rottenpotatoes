@@ -15,6 +15,11 @@ describe MoviesController  do
 			response.should render_template('search_movies_with_given_director')
 		end
 
-		it 'should make search results available to that template'
+		it 'should make search results available to that template' do
+			Movie.stub(:search_movies_with_given_director).and_return('fake')
+			post :search_movies_with_given_director
+			# Check if controller assigns to @movies_with_given_director
+			assigns(:movies_with_given_director) == 'fake'
+		end
 	end
 end
