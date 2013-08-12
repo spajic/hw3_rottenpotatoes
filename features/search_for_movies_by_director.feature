@@ -15,6 +15,10 @@
       | Alien        | R      |              |   1979-05-25 |
       | THX-1138     | R      | George Lucas |   1971-03-11 |
      
+    Scenario: see directors on movies page
+      Given I am on the RottenPotatoes home page
+      Then I should see "Ridley Scott"
+
     Scenario: add director to existing movie
       When I go to the edit page for "Alien"
       And  I fill in "Director" with "Ridley Scott"
