@@ -30,7 +30,7 @@ class MoviesController < ApplicationController
   end
 
   def search_movies_with_given_director
-    
+    Movie.search_movies_with_given_director(params[:director])
   end
 
   def new
