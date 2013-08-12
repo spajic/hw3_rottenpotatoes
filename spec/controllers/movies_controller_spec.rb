@@ -9,7 +9,12 @@ describe MoviesController  do
 			post :search_movies_with_given_director, {:director => 'mihal'}
 		end
 
-		it 'should select the Similar Movies template for rendering'
+		it 'should select the Similar Movies template for rendering' do
+			Movie.stub(:search_movies_with_given_director)
+			post :search_movies_with_given_director
+			response.should render_template('search_movies_with_given_director')
+		end
+
 		it 'should make search results available to that template'
 	end
 end
