@@ -19,7 +19,14 @@ describe MoviesController  do
 			Movie.stub(:search_movies_with_given_director).and_return('fake')
 			post :search_movies_with_given_director
 			# Check if controller assigns to @movies_with_given_director
-			assigns(:movies_with_given_director) == 'fake'
+			assigns(:movies_with_given_director).should == 'fake'
+		end
+
+		it 'should redirect to HP and warn if movie has no director info' do
+			post :search_movies_with_given_director, { 
+				:director => '', :movie => 'Alien'}
+			response.should redirect_to(movies_path)
+			flash[:warning].should == "'Alien' has no director info."
 		end
 	end
 end
