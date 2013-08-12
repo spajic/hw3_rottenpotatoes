@@ -48,3 +48,8 @@ end
 Then /I should see all of the movies/ do
   Movie.all.count.should == all("table#movies tr").count - 1
 end
+
+Then /the director of "(.*)" should be "(.*)"/ do |movie, director|
+  m = Movie.where(:title => movie).first
+  m.director.should == director
+end
