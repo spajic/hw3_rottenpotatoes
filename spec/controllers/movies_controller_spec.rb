@@ -11,13 +11,13 @@ describe MoviesController  do
 
 		it 'should select the Similar Movies template for rendering' do
 			Movie.stub(:search_movies_with_given_director)
-			post :search_movies_with_given_director
+			post :search_movies_with_given_director, {:director=>'dir', :movie=>'mov'}
 			response.should render_template('search_movies_with_given_director')
 		end
 
 		it 'should make search results available to that template' do
 			Movie.stub(:search_movies_with_given_director).and_return('fake')
-			post :search_movies_with_given_director
+			post :search_movies_with_given_director, {:director=>'dir', :movie=>'mov'}
 			# Check if controller assigns to @movies_with_given_director
 			assigns(:movies_with_given_director).should == 'fake'
 		end
