@@ -30,7 +30,7 @@ class MoviesController < ApplicationController
   end
 
   def search_movies_with_given_director
-    if params[:director] == ''
+    if params[:director] == '' or params[:director] == nil
       flash[:warning] = "'#{params[:movie]}' has no director info."
       redirect_to movies_path
       return

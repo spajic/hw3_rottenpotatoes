@@ -17,12 +17,12 @@
      
     Scenario: see directors on movies page
       Given I am on the RottenPotatoes home page
-      Then I should see "Ridley Scott"
+      Then  I should see "Ridley Scott"
 
     Scenario: see Director input field on edit page
       When I go to the edit page for "Alien"
       Then I should see "Director"
-      And I should see "Edit Existing Movie"
+      And  I should see "Edit Existing Movie"
 
     Scenario: add director to existing movie
       When I go to the edit page for "Alien"
@@ -33,7 +33,7 @@
     Scenario: find movie with same director
       Given I am on the details page for "Star Wars"
       When  I follow "Find Movies With Same Director"
-      Then  I should be on the Similar Movies page for "Star Wars"
+      Then  I should see "Similar Movies page for 'Star Wars'"
       And   I should see "THX-1138"
       But   I should not see "Blade Runner"
      
