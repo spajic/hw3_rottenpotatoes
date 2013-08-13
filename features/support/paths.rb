@@ -17,6 +17,7 @@ module NavigationHelpers
     when /^the movies page$/ then '/movies'
     when /^the edit page for "(.*)"$/ then edit_movie_path(Movie.where(:title=>$1).first.id)
     when /^the details page for "(.*)"$/ then movie_path(Movie.where(:title=>$1).first.id)
+    when /^the Similar Movies page for "(.*)"$/ then search_movies_with_given_director_path 
   
 
     # Add more mappings here.
