@@ -1,6 +1,22 @@
 require 'spec_helper'
 
 describe MoviesController  do
+	describe 'create' do
+		it 'should try to create new movie' do
+			m1 = FactoryGirl.create(:movie, :director => "d1", :title => "m1")
+			Movie.should_receive(:create!).and_return(m1)
+			post :create, :movie => m1
+		end
+	end
+
+	describe 'destroy' do
+		it 'should redirect to home page' do
+			m1 = FactoryGirl.create(:movie, :director => "d1", :title => "m1")
+			Movie.should_receive(:find).and_return(m1)			
+			post :destroy, :id=>'1'
+			response.should redirect_to(movies_path)
+		end
+	end
 	describe 'searching movies with same director' do
 		it 'should call the Movie method for search of similar movies' do
 			# Setting up expectation - Controller should try to call
